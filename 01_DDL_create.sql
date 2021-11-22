@@ -69,13 +69,14 @@ create table publisher(
 	-- 기본키 : bookNo not null
     -- 외래키 : pubNo (참조 테이블의 기본키와 동일 -> varchar(10) not null)
     -- bookPirce : 기본값 10000, 1000보다 큰 값만 들어갈 수 있게 설정 
-create table book(
-bookNo varchar(10) not null primary key,
-bookName varchar(30) not null,
-bookPrice int default 10000 check(bookPrice>1000),
-bookData date,
-pubNo varchar(10) not null,
-constraint FK_book_publisher foreign key(pubNo) references publisher(pubNo)
+CREATE TABLE book (
+    bookNo VARCHAR(10) NOT NULL PRIMARY KEY,
+    bookName VARCHAR(30) NOT NULL,
+    bookPrice INT DEFAULT 10000 CHECK (bookPrice > 1000),
+    bookData DATE,
+    pubNo VARCHAR(10) NOT NULL,
+    CONSTRAINT FK_book_publisher FOREIGN KEY (pubNo)
+        REFERENCES publisher (pubNo)
 );
 -- constraint 제약조건 이름 foreign key(외래키로 사용하는 열이름) references 참조하는 테이블명(참조하는 테이블의 기본키)
 describe book;
@@ -226,4 +227,5 @@ update board2 set boardNo = @count:=@count+1;
 -- 다시 0으로 설정하고
 set @count = 0;
 update board2 set boardNo = @count:=@count+1;
--- 초기 값을 1로 다시 설정alter table board2 auto_increment = 1;
+-- 초기 값을 1로 다시 설정
+alter table board2 auto_increment = 1;
