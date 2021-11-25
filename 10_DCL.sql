@@ -61,3 +61,9 @@ revoke select on *.* from newuser1@'%';
 -- sqldb3의 모든 테이블에 select권한 부여
 grant select on sqldb3.* to newuser1@'%';
 -- 다른 테이블은 could not fetched
+
+-- Import한 데이터베이스 테이블에서 동영상 파일 내보내기 테스트
+use sqldb6;
+
+select movieFilm from movie where movieId='1'
+into outfile '/Users/gobyeongchae/Desktop/SQL_script';
